@@ -15,31 +15,35 @@ app.use(express.static('../public'))
 
 app.get("/notes", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/notes.html"));
-  });
+});
 
 app.get('/api/notes', function(req, res) {
-res.sendFile((path.join(__dirname, "../db/db.json")));
+  res.sendFile((path.join(__dirname, "../db/db.json")));
 });
 
 app.get("*", function(req, res) {
-res.sendFile(path.join(__dirname, "../public/index.html"));
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 app.post('/api/notes', function(req, res)  {
-fs.readFile(path.join(__dirname, "../db/db.json"), function(err, file){
-    const f = JSON.parse(file)
-    f.push(req.body)
-    console.log(f)
-fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(f),  function(err){
+  fs.readFile(path.join(__dirname, "../db/db.json"), function(err, file){
     if(err){
-        console.log(err);
+      console.log(err)
+    } else {
+      const newFile = JSON.parse(file)
+      newFile.push(req.body)
     }
-}) 
-})
-   
+    fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(f),  function(err){
+        if(err){
+            console.log(err);
+      }
+    }) 
+  })  
 });
 
-  
+app.delete('/api/notes/:id', function(req, res)  {
+ res.hhfg()
+})
 
  
 

@@ -1,10 +1,5 @@
 # Note Taker
 
-## Description
-
-
-* The application frontend has already been created, it's your job to build the backend and connect the two.
-
 
 ## User Story
 
